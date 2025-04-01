@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donors - Myanmar Earthquake 2025</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Main content spacing */
+        .main-content {
+            padding: 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Table container */
+        .donors-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        /* Controls bar */
+        .table-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+        
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        /* Donor tier badges */
+        .tier-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .tier-platinum {
+            background: linear-gradient(135deg, #e5e4e2, #c0c0c0);
+            color: #333;
+        }
+        
+        .tier-gold {
+            background: linear-gradient(135deg, #ffd700, #daa520);
+        }
+        
+        .tier-silver {
+            background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+        }
+        
+        .tier-bronze {
+            background: linear-gradient(135deg, #cd7f32, #b87333);
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        
+        .pagination button {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .pagination button.active {
+            background: #2c3e50;
+            color: white;
+            border-color: #2c3e50;
+        }
+        
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+            
+            .table-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="sticky-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="memorial-icon"><i class="fas fa-hands-helping"></i></span>
+                <h1>Myanmar Remembers</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="victims.html"><i class="fas fa-users"></i> Victims</a></li>
+                <li><a href="damage.html"><i class="fas fa-map-marked-alt"></i> Damage Map</a></li>
+                <li><a class="active" href="donors.html"><i class="fas fa-hand-holding-heart"></i> Donors</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h2><i class="fas fa-hand-holding-heart"></i> Our Generous Donors</h2>
+        <p>We gratefully acknowledge these contributions to the relief efforts</p>
+        
+        <div class="donors-container">
+            <div class="table-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search donors...">
+                </div>
+                
+                <div class="filter-controls">
+                    <select id="tier-filter">
+                        <option value="all">All Tiers</option>
+                        <option value="platinum">Platinum ($100,000+)</option>
+                        <option value="gold">Gold ($50,000+)</option>
+                        <option value="silver">Silver ($10,000+)</option>
+                        <option value="bronze">Bronze (Under $10,000)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <table id="donors-table">
+                <thead>
+                    <tr>
+                        <th>Donor</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Tier</th>
+                        <th>Date</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="donors-data">
+                    <!-- Data will be populated by JavaScript -->
+                </tbody>
+            </table>
+            
+            <div class="pagination">
+                <button id="prev-page" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                <span id="page-info">Page 1 of 1</span>
+                <button id="next-page">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <div class="logo">
+                    <span class="memorial-icon"><i class="fas fa-hands-helping"></i></span>
+                    <h3>Myanmar Remembers</h3>
+                </div>
+                <p>A memorial website dedicated to honoring the victims and heroes of the March 2025 Myanmar earthquake.</p>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About the Earthquake</a></li>
+                    <li><a href="victims.html">Victims Memorial</a></li>
+                    <li><a href="damage.html">Damage Map</a></li>
+                    <li><a href="donors.html">Donors</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> contact@myanmarearthquakememorial.org</p>
+                <p><i class="fas fa-phone"></i> +95 1 234 5678</p>
+                <p><i class="fas fa-map-marker-alt"></i> Yangon, Myanmar</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Myanmar Earthquake Memorial. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+
+    <script src="js/donors.js"></script>
+</body>
+</html>

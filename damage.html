@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damage Map - Myanmar Earthquake March 2025</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation (same as homepage) -->
+    <nav class="sticky-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="memorial-icon"><i class="fas fa-hands-helping"></i></span>
+                <h1>Myanmar Remembers</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="victims.html"><i class="fas fa-users"></i> Victims</a></li>
+                <li><a class="active" href="damage.html"><i class="fas fa-map-marked-alt"></i> Damage Map</a></li>
+                <li><a href="donors.html"><i class="fas fa-hand-holding-heart"></i> Donors</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Map Section -->
+    <section class="damage-map-section">
+        <div class="section-header">
+            <h2>Earthquake Damage Assessment</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">Interactive map showing affected areas and relief efforts</p>
+        </div>
+        
+        <div class="map-controls">
+            <div class="map-legend">
+                <h4>Map Legend</h4>
+                <div><span class="legend-icon epicenter"></span> Earthquake Epicenter</div>
+                <div><span class="legend-icon severe"></span> Severe Damage</div>
+                <div><span class="legend-icon moderate"></span> Moderate Damage</div>
+                <div><span class="legend-icon minor"></span> Minor Damage</div>
+                <div><span class="legend-icon shelter"></span> Relief Shelter</div>
+                <div><span class="legend-icon medical"></span> Medical Facility</div>
+                <div><span class="legend-icon food"></span> Food Distribution</div>
+            </div>
+            
+            <div class="map-layers">
+                <h4>Map Layers</h4>
+                <div class="layer-option">
+                    <input type="checkbox" id="damage-layer" checked>
+                    <label for="damage-layer">Damage Areas</label>
+                </div>
+                <div class="layer-option">
+                    <input type="checkbox" id="relief-layer" checked>
+                    <label for="relief-layer">Relief Centers</label>
+                </div>
+                <div class="layer-option">
+                    <input type="checkbox" id="satellite-layer">
+                    <label for="satellite-layer">Satellite View</label>
+                </div>
+            </div>
+        </div>
+        
+        <div id="damage-map"></div>
+        
+        <div class="map-data-table">
+            <h3>Affected Areas Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Region</th>
+                        <th>Severity</th>
+                        <th>Population</th>
+                        <th>Deaths</th>
+                        <th>Injured</th>
+                        <th>Displaced</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Yangon</td>
+                        <td><span class="severity severe">Severe</span></td>
+                        <td>5,200,000</td>
+                        <td>650</td>
+                        <td>2,800</td>
+                        <td>120,000</td>
+                    </tr>
+                    <tr>
+                        <td>Bago</td>
+                        <td><span class="severity moderate">Moderate</span></td>
+                        <td>1,800,000</td>
+                        <td>320</td>
+                        <td>1,200</td>
+                        <td>45,000</td>
+                    </tr>
+                    <tr>
+                        <td>Mandalay</td>
+                        <td><span class="severity minor">Minor</span></td>
+                        <td>2,500,000</td>
+                        <td>230</td>
+                        <td>1,000</td>
+                        <td>15,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Relief Efforts Section -->
+    <section class="relief-efforts">
+        <div class="section-header">
+            <h2>Relief Efforts</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">Current humanitarian response operations</p>
+        </div>
+        
+        <div class="relief-stats">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Shelters Established</h3>
+                    <div class="stat-value">128</div>
+                    <p class="stat-detail">Temporary housing facilities</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Meals Distributed</h3>
+                    <div class="stat-value">1.2M+</div>
+                    <p class="stat-detail">Food packages delivered</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Medical Personnel</h3>
+                    <div class="stat-value">850</div>
+                    <p class="stat-detail">Doctors and nurses deployed</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Relief Convoys</h3>
+                    <div class="stat-value">45</div>
+                    <p class="stat-detail">Supply deliveries made</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as homepage) -->
+    <footer>
+        <!-- Footer content from homepage -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize the damage map
+        function initDamageMap() {
+            // Create map with two base layers
+            const streetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            });
+            
+            const satelliteMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            });
+            
+            const baseLayers = {
+                "Street Map": streetMap,
+                "Satellite View": satelliteMap
+            };
+            
+            const map = L.map('damage-map', {
+                layers: [streetMap],
+                center: [21.9162, 95.9560],
+                zoom: 7,
+                zoomControl: false
+            });
+            
+            // Add zoom control with position
+            L.control.zoom({ position: 'topright' }).addTo(map);
+            
+            // Layer control
+            L.control.layers(baseLayers, null, { position: 'topright' }).addTo(map);
+            
+            // Damage areas
+            const damageAreas = {
+                "Severe Damage": L.layerGroup(),
+                "Moderate Damage": L.layerGroup(),
+                "Minor Damage": L.layerGroup()
+            };
+            
+            // Add damage areas polygons
+            const severeArea = L.polygon([
+                [22.0, 95.5], [22.5, 95.5], [22.5, 96.0], [22.0, 96.0]
+            ], {
+                color: '#ff0000',
+                fillColor: '#ff0000',
+                fillOpacity: 0.2,
+                weight: 2
+            }).addTo(damageAreas["Severe Damage"])
+            .bindPopup("<b>Severe Damage Area</b><br>Yangon Region<br><br><b>Statistics:</b><br>- 650 confirmed deaths<br>- 2,800 injured<br>- 120,000 displaced");
+            
+            const moderateArea = L.polygon([
+                [21.5, 95.0], [22.0, 95.0], [22.0, 95.5], [21.5, 95.5]
+            ], {
+                color: '#ff9900',
+                fillColor: '#ff9900',
+                fillOpacity: 0.2,
+                weight: 2
+            }).addTo(damageAreas["Moderate Damage"])
+            .bindPopup("<b>Moderate Damage Area</b><br>Bago Region<br><br><b>Statistics:</b><br>- 320 confirmed deaths<br>- 1,200 injured<br>- 45,000 displaced");
+            
+            const minorArea = L.polygon([
+                [21.0, 94.5], [21.5, 94.5], [21.5, 95.0], [21.0, 95.0]
+            ], {
+                color: '#ffff00',
+                fillColor: '#ffff00',
+                fillOpacity: 0.2,
+                weight: 2
+            }).addTo(damageAreas["Minor Damage"])
+            .bindPopup("<b>Minor Damage Area</b><br>Mandalay Region<br><br><b>Statistics:</b><br>- 230 confirmed deaths<br>- 1,000 injured<br>- 15,000 displaced");
+            
+            // Add epicenter
+            const epicenter = L.circle([21.9162, 95.9560], {
+                color: '#ff0000',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: 50000
+            }).addTo(map)
+            .bindPopup("<b>Earthquake Epicenter</b><br>Magnitude 7.8<br>Depth: 10km<br>March 15, 2025 - 08:17 local time");
+            
+            // Relief centers data
+            const reliefCenters = {
+                "Shelters": L.layerGroup(),
+                "Medical Facilities": L.layerGroup(),
+                "Food Distribution": L.layerGroup()
+            };
+            
+            // Marker cluster groups
+            const shelterCluster = L.markerClusterGroup();
+            const medicalCluster = L.markerClusterGroup();
+            const foodCluster = L.markerClusterGroup();
+            
+            // Sample relief center data (in real app this would come from API)
+            const shelters = [
+                {lat: 22.1, lng: 95.6, name: "Yangon Central Shelter", capacity: 500},
+                {lat: 22.15, lng: 95.55, name: "North Yangon Shelter", capacity: 300},
+                {lat: 21.6, lng: 95.2, name: "Bago Main Shelter", capacity: 400},
+                {lat: 21.3, lng: 94.9, name: "Mandalay Relief Camp", capacity: 350}
+            ];
+            
+            const medicalFacilities = [
+                {lat: 22.05, lng: 95.58, name: "Yangon General Hospital", type: "Hospital"},
+                {lat: 22.12, lng: 95.62, name: "International Red Cross Clinic", type: "Field Hospital"},
+                {lat: 21.55, lng: 95.15, name: "Bago Medical Center", type: "Hospital"},
+                {lat: 21.35, lng: 94.85, name: "Mandalay Emergency Clinic", type: "Clinic"}
+            ];
+            
+            const foodDistribution = [
+                {lat: 22.08, lng: 95.6, name: "Yangon Central Food Distribution", status: "Active"},
+                {lat: 22.18, lng: 95.52, name: "Yangon North Food Station", status: "Active"},
+                {lat: 21.58, lng: 95.18, name: "Bago Food Distribution", status: "Active"},
+                {lat: 21.4, lng: 94.88, name: "Mandalay Food Aid Center", status: "Active"}
+            ];
+            
+            // Add shelters to map
+            shelters.forEach(shelter => {
+                const marker = L.marker([shelter.lat, shelter.lng], {
+                    icon: L.divIcon({
+                        className: 'shelter-icon',
+                        html: '<i class="fas fa-home"></i>',
+                        iconSize: [30, 30]
+                    })
+                }).bindPopup(`<b>${shelter.name}</b><br>Capacity: ${shelter.capacity} people`);
+                
+                reliefCenters["Shelters"].addLayer(marker);
+                shelterCluster.addLayer(marker);
+            });
+            
+            // Add medical facilities to map
+            medicalFacilities.forEach(facility => {
+                const marker = L.marker([facility.lat, facility.lng], {
+                    icon: L.divIcon({
+                        className: 'medical-icon',
+                        html: '<i class="fas fa-plus-square"></i>',
+                        iconSize: [30, 30]
+                    })
+                }).bindPopup(`<b>${facility.name}</b><br>Type: ${facility.type}`);
+                
+                reliefCenters["Medical Facilities"].addLayer(marker);
+                medicalCluster.addLayer(marker);
+            });
+            
+            // Add food distribution to map
+            foodDistribution.forEach(food => {
+                const marker = L.marker([food.lat, food.lng], {
+                    icon: L.divIcon({
+                        className: 'food-icon',
+                        html: '<i class="fas fa-utensils"></i>',
+                        iconSize: [30, 30]
+                    })
+                }).bindPopup(`<b>${food.name}</b><br>Status: ${food.status}`);
+                
+                reliefCenters["Food Distribution"].addLayer(marker);
+                foodCluster.addLayer(marker);
+            });
+            
+            // Add layer control for damage and relief layers
+            const overlayLayers = {
+                ...damageAreas,
+                ...reliefCenters
+            };
+            
+            L.control.layers(baseLayers, overlayLayers, { position: 'topright' }).addTo(map);
+            
+            // Add all layers by default
+            Object.values(damageAreas).forEach(layer => layer.addTo(map));
+            Object.values(reliefCenters).forEach(layer => layer.addTo(map));
+            
+            // Add clustered layers
+            map.addLayer(shelterCluster);
+            map.addLayer(medicalCluster);
+            map.addLayer(foodCluster);
+            
+            // Connect layer toggles to map layers
+            document.getElementById('damage-layer').addEventListener('change', function(e) {
+                if (e.target.checked) {
+                    Object.values(damageAreas).forEach(layer => layer.addTo(map));
+                } else {
+                    Object.values(damageAreas).forEach(layer => map.removeLayer(layer));
+                }
+            });
+            
+            document.getElementById('relief-layer').addEventListener('change', function(e) {
+                if (e.target.checked) {
+                    Object.values(reliefCenters).forEach(layer => layer.addTo(map));
+                    map.addLayer(shelterCluster);
+                    map.addLayer(medicalCluster);
+                    map.addLayer(foodCluster);
+                } else {
+                    Object.values(reliefCenters).forEach(layer => map.removeLayer(layer));
+                    map.removeLayer(shelterCluster);
+                    map.removeLayer(medicalCluster);
+                    map.removeLayer(foodCluster);
+                }
+            });
+            
+            document.getElementById('satellite-layer').addEventListener('change', function(e) {
+                if (e.target.checked) {
+                    map.removeLayer(streetMap);
+                    map.addLayer(satelliteMap);
+                } else {
+                    map.removeLayer(satelliteMap);
+                    map.addLayer(streetMap);
+                }
+            });
+            
+            // Fit bounds to show all damage areas
+            const bounds = L.latLngBounds([
+                [22.5, 96.0], // NE corner
+                [21.0, 94.5]  // SW corner
+            ]);
+            map.fitBounds(bounds, { padding: [50, 50] });
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initDamageMap();
+            
+            // Mobile menu toggle
+            document.querySelector('.mobile-menu').addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.toggle('active');
+            });
+            
+            // Back to top button
+            const backToTopBtn = document.querySelector('.back-to-top');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('active');
+                } else {
+                    backToTopBtn.classList.remove('active');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
