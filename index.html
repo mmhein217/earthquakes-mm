@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myanmar Earthquake March 2025 - Memorial</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Header with Navigation -->
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <video autoplay muted loop id="hero-video">
+            <source src="videos/hero-background.mp4" type="video/mp4">
+            <!-- Fallback image -->
+            <img src="images/hero-fallback.jpg" alt="Myanmar landscape">
+        </video>
+        
+        <nav class="sticky-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="memorial-icon"><i class="fas fa-hands-helping"></i></span>
+                    <h1>Myanmar Remembers</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="victims.html"><i class="fas fa-users"></i> Victims</a></li>
+                    <li><a href="damage.html"><i class="fas fa-map-marked-alt"></i> Damage Map</a></li>
+                    <li><a href="donors.html"><i class="fas fa-hand-holding-heart"></i> Donors</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="hero-content">
+            <h1 class="title-animate">Myanmar Earthquake</h1>
+            <h2 class="subtitle-animate">March 2025 Memorial</h2>
+            <p class="hero-text">Honoring those affected by the most devastating earthquake in Myanmar's recent history</p>
+            <div class="hero-buttons">
+                <a href="#quick-facts" class="btn btn-primary">Learn More</a>
+                <a href="donors.html" class="btn btn-secondary">Donate Now</a>
+            </div>
+        </div>
+        
+        <div class="scroll-down">
+            <span>Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- Quick Facts Section -->
+    <section id="quick-facts" class="quick-facts">
+        <div class="section-header">
+            <h2>Earthquake At a Glance</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">Key statistics about the disaster</p>
+        </div>
+        
+        <div class="facts-grid">
+            <div class="fact-card" data-aos="fade-up">
+                <div class="fact-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Magnitude</h3>
+                <div class="fact-value">7.8</div>
+                <p class="fact-detail">Richter scale</p>
+            </div>
+            
+            <div class="fact-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="fact-icon">
+                    <i class="fas fa-cross"></i>
+                </div>
+                <h3>Fatalities</h3>
+                <div class="fact-value">1,200+</div>
+                <p class="fact-detail">Confirmed deaths</p>
+            </div>
+            
+            <div class="fact-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="fact-icon">
+                    <i class="fas fa-procedures"></i>
+                </div>
+                <h3>Injured</h3>
+                <div class="fact-value">5,000+</div>
+                <p class="fact-detail">People affected</p>
+            </div>
+            
+            <div class="fact-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="fact-icon">
+                    <i class="fas fa-search-location"></i>
+                </div>
+                <h3>Missing</h3>
+                <div class="fact-value">300+</div>
+                <p class="fact-detail">Still unaccounted for</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Preview -->
+    <section class="map-preview">
+        <div class="section-header">
+            <h2>Affected Areas</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">See the regions most impacted by the disaster</p>
+        </div>
+        
+        <div class="map-container">
+            <div id="homepage-map"></div>
+            <div class="map-overlay">
+                <h3>Explore the Damage Map</h3>
+                <p>View detailed information about affected regions, relief centers, and more</p>
+                <a href="damage.html" class="btn btn-outline">View Full Map</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Updates Section -->
+    <section class="updates">
+        <div class="section-header">
+            <h2>Recent Updates</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">Latest news about recovery efforts</p>
+        </div>
+        
+        <div class="updates-grid">
+            <div class="update-card" data-aos="fade-right">
+                <div class="update-date">
+                    <span class="day">15</span>
+                    <span class="month">Apr</span>
+                    <span class="year">2025</span>
+                </div>
+                <div class="update-content">
+                    <h3>Rebuilding Efforts Begin in Yangon</h3>
+                    <p>The first phase of reconstruction has started in Yangon's most affected districts, with priority given to essential infrastructure.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="update-card" data-aos="fade-right" data-aos-delay="100">
+                <div class="update-date">
+                    <span class="day">10</span>
+                    <span class="month">Apr</span>
+                    <span class="year">2025</span>
+                </div>
+                <div class="update-content">
+                    <h3>International Aid Reaches Myanmar</h3>
+                    <p>Additional relief supplies from neighboring countries have arrived, including medical equipment and temporary shelters.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="update-card" data-aos="fade-right" data-aos-delay="200">
+                <div class="update-date">
+                    <span class="day">05</span>
+                    <span class="month">Apr</span>
+                    <span class="year">2025</span>
+                </div>
+                <div class="update-content">
+                    <h3>Memorial Services Held Nationwide</h3>
+                    <p>Communities across Myanmar came together to remember those lost in the earthquake two weeks after the disaster.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="view-all-updates">
+            <a href="#" class="btn btn-outline">View All Updates</a>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>How You Can Help</h2>
+            <p>Your support can make a difference in the lives of those affected by this tragedy.</p>
+            <div class="cta-buttons">
+                <a href="donors.html" class="btn btn-primary"><i class="fas fa-donate"></i> Make a Donation</a>
+                <a href="#" class="btn btn-secondary"><i class="fas fa-hands-helping"></i> Volunteer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <div class="logo">
+                    <span class="memorial-icon"><i class="fas fa-hands-helping"></i></span>
+                    <h3>Myanmar Remembers</h3>
+                </div>
+                <p>A memorial website dedicated to honoring the victims and heroes of the March 2025 Myanmar earthquake.</p>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About the Earthquake</a></li>
+                    <li><a href="victims.html">Victims Memorial</a></li>
+                    <li><a href="damage.html">Damage Map</a></li>
+                    <li><a href="donors.html">Donors</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> contact@myanmarearthquakememorial.org</p>
+                <p><i class="fas fa-phone"></i> +95 1 234 5678</p>
+                <p><i class="fas fa-map-marker-alt"></i> Yangon, Myanmar</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Myanmar Earthquake Memorial. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize homepage map
+        function initHomepageMap() {
+            const map = L.map('homepage-map').setView([21.9162, 95.9560], 6);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Add earthquake epicenter
+            L.circle([21.9162, 95.9560], {
+                color: '#ff0000',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: 50000
+            }).addTo(map).bindPopup("<b>Epicenter</b><br>Magnitude 7.8");
+            
+            // Add affected areas polygons
+            const severeArea = L.polygon([
+                [22.0, 95.5], [22.5, 95.5], [22.5, 96.0], [22.0, 96.0]
+            ], {
+                color: '#ff0000',
+                fillColor: '#ff0000',
+                fillOpacity: 0.2,
+                weight: 2
+            }).addTo(map).bindPopup("<b>Severe Damage Area</b><br>Yangon Region");
+            
+            const moderateArea = L.polygon([
+                [21.5, 95.0], [22.0, 95.0], [22.0, 95.5], [21.5, 95.5]
+            ], {
+                color: '#ff9900',
+                fillColor: '#ff9900',
+                fillOpacity: 0.2,
+                weight: 2
+            }).addTo(map).bindPopup("<b>Moderate Damage Area</b><br>Bago Region");
+            
+            const minorArea = L.polygon([
+                [21.0, 94.5], [21.5, 94.5], [21.5, 95.0], [21.0, 95.0]
+            ], {
+                color: '#ffff00',
+                fillColor: '#ffff00',
+                fillOpacity: 0.2,
+                weight: 2
+            }).addTo(map).bindPopup("<b>Minor Damage Area</b><br>Mandalay Region");
+            
+            // Add legend
+            const legend = L.control({position: 'bottomright'});
+            legend.onAdd = function(map) {
+                const div = L.DomUtil.create('div', 'map-legend');
+                div.innerHTML = `
+                    <h4>Damage Severity</h4>
+                    <div><span style="background:#ff0000"></span> Severe</div>
+                    <div><span style="background:#ff9900"></span> Moderate</div>
+                    <div><span style="background:#ffff00"></span> Minor</div>
+                `;
+                return div;
+            };
+            legend.addTo(map);
+        }
+        
+        // Initialize animations
+        function initAnimations() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initHomepageMap();
+            initAnimations();
+        });
+    </script>
+</body>
+</html>
